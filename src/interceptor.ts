@@ -93,6 +93,10 @@ export const aws4Interceptor = (
 
   config.headers = signingOptions.headers;
 
+  // Remove Host header to prevent 'Refused to set unsafe header "Host"'
+  // browser error
+  delete config.headers.Host;
+
   return config;
 };
 
