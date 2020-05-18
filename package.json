@@ -1,7 +1,7 @@
 {
-  "name": "aws4-axios",
+  "name": "@cgutierrezpa/aws4-axios",
   "version": "1.12.1",
-  "description": "Axios request interceptor for signing requests with AWSv4",
+  "description": "Axios request interceptor for signing requests with AWSv4. It includes a fix regarding webpack compilations. Forked from https://github.com/jamesmbourne/aws4-axios.git",
   "author": "James Bourne",
   "repository": {
     "type": "git",
