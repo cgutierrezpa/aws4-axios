@@ -10,9 +10,9 @@ This may be useful for accessing AWS services protected with IAM auth such as an
 
 # Installation
 
-| yarn                  | npm                             |
-| --------------------- | ------------------------------- |
-| `yarn add aws4-axios` | `npm install --save aws4-axios` |
+| yarn                                | npm                                           |
+| ----------------------------------- | --------------------------------------------- |
+| `yarn add @cgutierrezpa/aws4-axios` | `npm install --save @cgutierrezpa/aws4-axios` |
 
 # Usage
 
@@ -24,13 +24,13 @@ import { aws4Interceptor } from "aws4-axios";
 
 const interceptor = aws4Interceptor({
   region: "eu-west-2",
-  service: "execute-api"
+  service: "execute-api",
 });
 
 axios.interceptors.request.use(interceptor);
 
 // Requests made using Axios will now be signed
-axios.get("https://example.com/foo").then(res => {
+axios.get("https://example.com/foo").then((res) => {
   // ...
 });
 ```
@@ -45,13 +45,13 @@ const client = axios.create();
 
 const interceptor = aws4Interceptor({
   region: "eu-west-2",
-  service: "execute-api"
+  service: "execute-api",
 });
 
 client.interceptors.request.use(interceptor);
 
 // Requests made using Axios will now be signed
-client.get("https://example.com/foo").then(res => {
+client.get("https://example.com/foo").then((res) => {
   // ...
 });
 ```
@@ -59,11 +59,14 @@ client.get("https://example.com/foo").then(res => {
 You can also pass AWS credentials in explicitly (otherwise taken from process.env)
 
 ```typescript
-const interceptor = aws4Interceptor({
-  region: "eu-west-2",
-  service: "execute-api"
-}, {
-  accessKeyId: '',
-  secretAccessKey: ''
-});
+const interceptor = aws4Interceptor(
+  {
+    region: "eu-west-2",
+    service: "execute-api",
+  },
+  {
+    accessKeyId: "",
+    secretAccessKey: "",
+  }
+);
 ```
