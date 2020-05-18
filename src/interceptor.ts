@@ -2,7 +2,6 @@ import { sign } from "aws4";
 import { AxiosRequestConfig } from "axios";
 import combineURLs from "axios/lib/helpers/combineURLs";
 import isAbsoluteURL from "axios/lib/helpers/isAbsoluteURL";
-import { URL } from "url";
 
 export interface InterceptorOptions {
   service?: string;
@@ -38,9 +37,10 @@ export interface Credentials {
  *
  * @param options The options to be used when signing a request
  */
-export const aws4Interceptor = (options?: InterceptorOptions, credentials?: Credentials) => (
-  config: AxiosRequestConfig
-) => {
+export const aws4Interceptor = (
+  options?: InterceptorOptions,
+  credentials?: Credentials
+) => (config: AxiosRequestConfig) => {
   if (!config.url) {
     throw new Error("No URL present in request config, unable to sign request");
   }
@@ -86,7 +86,7 @@ export const aws4Interceptor = (options?: InterceptorOptions, credentials?: Cred
     service,
     ...(signQuery !== undefined ? { signQuery } : {}),
     body: transformedData,
-    headers: headersToSign
+    headers: headersToSign,
   };
 
   sign(signingOptions, credentials);
